@@ -78,10 +78,10 @@
     "rejected_probes": "None yet. The current evidence points to register allocation rather than a missing operation."
   },
   "menuFightDrawTargetSecret": {
-    "best_local_change": "No accepted local improvement; current full-report score is 99.2%.",
-    "remaining_diff": "The only aligned diff is retail li r4,0 versus candidate subi r4,r5,2 for the final winSpriteSetDisp call.",
-    "pipeline_action": "Keep local value-lifetime effects in the search space: replacing an expression with the retail literal changed earlier loop register allocation.",
-    "rejected_probes": "Replacing i-2 with literal 0 or i-i changed loop liveness and lowered the score to 97.10667%."
+    "best_local_change": "Rewrote the body as the natural four-entry loop (8-byte stride) that MWCC unrolls by two, with the switch result declared at function scope and a literal 0 final argument; carved into a standalone C unit and linked exact.",
+    "remaining_diff": "None; the 300-byte function and unit are 100% and all 26 canonical hashes pass.",
+    "pipeline_action": "When a ctr loop keeps a dead counter increment, try the un-unrolled source loop before shaping the trailing expression.",
+    "rejected_probes": "Replacing i - 2 with literal zero removed the now-unused loop counter and regressed the canonical score to 97.10667%. Recomputing the entry pointer from the loop index preserved the counter but changed the callback's code shape and scored 95.05334%. Both were reverted. Declaring the switch result inside the loop, or after the entry pointer and counter, swapped r4/r5 (99.0%)."
   },
   "fn_8003842C": {
     "best_local_change": "Isolated the driver in its candidate object; full report remains 98.146255%.",
@@ -300,10 +300,10 @@
     "rejected_probes": "Combining the switch's separate 0x47 and 0x48 return cases changed MWCC's branch tree and scored 95.21805% in the standalone object; preserving separate cases restored 100%."
   },
   "menuFightDrawTargetSecret": {
-    "best_local_change": "No accepted C-body change; the isolated 300-byte callback remains 99.2% and unlinked.",
-    "remaining_diff": "Only its final winSpriteSetDisp argument differs: retail loads literal zero, while the candidate computes i - 2 after the two-iteration loop.",
-    "pipeline_action": "Preserve the loop counter's live use while searching for a source shape that emits a literal-zero final argument; compare the entire callback, not the final instruction alone.",
-    "rejected_probes": "Replacing i - 2 with literal zero removed the now-unused loop counter and regressed the canonical score to 97.10667%. Recomputing the entry pointer from the loop index preserved the counter but changed the callback's code shape and scored 95.05334%. Both were reverted."
+    "best_local_change": "Rewrote the body as the natural four-entry loop (8-byte stride) that MWCC unrolls by two, with the switch result declared at function scope and a literal 0 final argument; carved into a standalone C unit and linked exact.",
+    "remaining_diff": "None; the 300-byte function and unit are 100% and all 26 canonical hashes pass.",
+    "pipeline_action": "When a ctr loop keeps a dead counter increment, try the un-unrolled source loop before shaping the trailing expression.",
+    "rejected_probes": "Replacing i - 2 with literal zero removed the now-unused loop counter and regressed the canonical score to 97.10667%. Recomputing the entry pointer from the loop index preserved the counter but changed the callback's code shape and scored 95.05334%. Both were reverted. Declaring the switch result inside the loop, or after the entry pointer and counter, swapped r4/r5 (99.0%)."
   },
   "fn_800776E4": {
     "best_local_change": "No accepted change; the isolated battle-rule function remains 99.79798% matched and unlinked.",
