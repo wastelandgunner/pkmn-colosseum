@@ -358,5 +358,28 @@
     "remaining_diff": "None in the linked middle unit. The flanking _sysvarsProcessData__FP16sysvarsFuncEntryPc and fn_80034FB4 remain nonexact.",
     "pipeline_action": "When carving an exact block, suppress unused out-of-line inline helpers, import byte-verified shared conversion constants, and import an interior retail-owned jump table only after its entire byte span and relocation list match. A text-only 100% score is insufficient.",
     "rejected_probes": "The first carve emitted a 0xCC-byte unused wait helper, a private 0x58-byte switch table, and two private double constants; the DOL hash failed. Splitting the retail .data owner around its 4-byte-aligned table shifted later sections despite 100% section scores. Both failed layouts were replaced by verified imports."
+  },
+  "fn_800379E8": {
+    "best_local_change": "Carved fn_800379E8/fn_80037BB0/fn_80037D78 (0x800379E8-0x80037F40) into pda_exact_800379E8.c. In pdaUpdateOrbitSprite the signed step is stored, then round-tripped through double (step = (f64)step) before the angle update, which gives retail's separate frsp copy; 2pi/0.0f resolve to lbl_8047BA60/lbl_8047BA58 via constant_import. Linked exact.",
+    "remaining_diff": "None; all three 456-byte functions and the unit are 100%, and all 26 canonical hashes pass.",
+    "pipeline_action": "An frsp of a value that is also stored unrounded points at a float->double->float round trip in the source; private literals that retail shares need a constant_import carve rather than extern loads.",
+    "rejected_probes": "Declaring the step as f64 throughout added an frsp in the stationary branch; using lbl_8047BA58/lbl_8047BA60 as extern loads instead of literals scored 93.42%."
+  },
+  "fn_80037BB0": {
+    "best_local_change": "Carved fn_800379E8/fn_80037BB0/fn_80037D78 (0x800379E8-0x80037F40) into pda_exact_800379E8.c. In pdaUpdateOrbitSprite the signed step is stored, then round-tripped through double (step = (f64)step) before the angle update, which gives retail's separate frsp copy; 2pi/0.0f resolve to lbl_8047BA60/lbl_8047BA58 via constant_import. Linked exact.",
+    "remaining_diff": "None; all three 456-byte functions and the unit are 100%, and all 26 canonical hashes pass.",
+    "pipeline_action": "An frsp of a value that is also stored unrounded points at a float->double->float round trip in the source; private literals that retail shares need a constant_import carve rather than extern loads.",
+    "rejected_probes": "Declaring the step as f64 throughout added an frsp in the stationary branch; using lbl_8047BA58/lbl_8047BA60 as extern loads instead of literals scored 93.42%."
+  },
+  "fn_80037D78": {
+    "best_local_change": "Carved fn_800379E8/fn_80037BB0/fn_80037D78 (0x800379E8-0x80037F40) into pda_exact_800379E8.c. In pdaUpdateOrbitSprite the signed step is stored, then round-tripped through double (step = (f64)step) before the angle update, which gives retail's separate frsp copy; 2pi/0.0f resolve to lbl_8047BA60/lbl_8047BA58 via constant_import. Linked exact.",
+    "remaining_diff": "None; all three 456-byte functions and the unit are 100%, and all 26 canonical hashes pass.",
+    "pipeline_action": "An frsp of a value that is also stored unrounded points at a float->double->float round trip in the source; private literals that retail shares need a constant_import carve rather than extern loads.",
+    "rejected_probes": "Declaring the step as f64 throughout added an frsp in the stationary branch; using lbl_8047BA58/lbl_8047BA60 as extern loads instead of literals scored 93.42%."
+  },
+  "fn_80037F40": {
+    "best_local_change": "Shares the pdaUpdateOrbitSprite double round-trip fix with its linked siblings (90.87% -> 93.18% locally); now its own candidate unit at 0x80037F40-0x80038124.",
+    "remaining_diff": "With the target update enabled, retail loads lbl_8047A484 and the base angle before addressing lbl_802E52A8 and stores lbl_8047A488 after the first compare; the candidate addresses the table first.",
+    "rejected_probes": "Moving the target update after the angle subtraction scored 93.10%."
   }
 }
