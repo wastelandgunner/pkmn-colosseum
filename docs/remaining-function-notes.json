@@ -381,5 +381,13 @@
     "best_local_change": "Shares the pdaUpdateOrbitSprite double round-trip fix with its linked siblings (90.87% -> 93.18% locally); now its own candidate unit at 0x80037F40-0x80038124.",
     "remaining_diff": "With the target update enabled, retail loads lbl_8047A484 and the base angle before addressing lbl_802E52A8 and stores lbl_8047A488 after the first compare; the candidate addresses the table first.",
     "rejected_probes": "Moving the target update after the angle subtraction scored 93.10%."
+  },
+  "menuFightDrawSecretWazaDoc": {
+    "best_local_change": "A local declaration-order search (result/id/value order) reached text-exact code; the jump table then showed cases 0x11FE and 0x11FF bound to each other's bodies, so the labels were swapped to retail's mapping. Carved into menuFight_exact_8000F400.c with jumptable_802E4CA8 imported from data_802E4CA8.c and linked.",
+    "remaining_diff": "None; the 872-byte function and unit are 100% and all 26 canonical hashes pass.",
+    "pipeline_action": "Run a declaration-order search on register-only diffs, and compare compiled switch tables against the retail owner: a swapped table entry means swapped case labels, not a codegen problem.",
+    "rejected_probes": ""
+  },
+  "menuFightDrawSecretWazaSelect": {
   }
 }
